@@ -12,25 +12,30 @@ var questionNumber=0;
 //var questions = ["Question 1?","Question2?","Question 3?", "Question 4?", "Question 5?"];
 var answers = [
   {
-    Q: "Who was the Norse god of motherhood?",
-    q1answers: ["Odin","Frigg","Loki","Baldur"],
-    A: "Odin",
+    Q: "Who was the Norse god of mischief?",
+    choices: ["Odin","Frigg","Loki","Baldur"],
+    A: "Loki",
   },
   {
     Q: "Who was the Egyptian goddess of the moon?",
-    q2answers: ["Ra","Anubis","Isis","Ma'at"],
+    choices: ["Ra","Anubis","Isis","Ma'at"],
+    A: "Isis",
   },
   {
-    q3answers: ["Jupiter","Mars","Venus","Apollo"],
+    Q: "Who was the King of the Roman pantheon?",
+    choices: ["Jupiter","Mars","Venus","Apollo"],
+    A: "Jupiter"
   },
   {
-    q4answers:["Zeus","Poseidon","Ares","Dionysos"],
+    Q: "Who was the Greek god of getting hammered and engaging in ritual madness?",
+    choices:["Zeus","Poseidon","Ares","Dionysos"],
+    A: "Dionysos"
   }
 ]
 
 //checking array output
 console.log(answers[1].Q)
-console.log(answers[1].q2answers[1])
+console.log(answers[1].choices[1])
 
 //var totalQuestions=questions.length;
 //console.log(totalQuestions)
@@ -49,29 +54,62 @@ console.log(choice1)
 //hides answer buttons div 
 answerButtonsDiv.style.display = "none";
 
-startBtn.addEventListener("click", function() {
+// startBtn.addEventListener("click", function() {
+//   setTime();
+//   startBtn.style.display = "none";
+//   quizScreens();
+
+// })
+startScreen()
+
+function startScreen(){
+  startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
   quizScreens();
-  //Shows question buttons. MIGHT NEED TO PUT ELSEWHERE
- // answerButtons.style.display = "block";
-})
-
+  })
+}
 
 function quizScreens() {
+  // var correctAnswer;
+  // var userAnswer;
   answerButtonsDiv.style.display = "block";
-  for (var i = -1; i < numberOfQuestions; i++) {
+  for (var i = 0; i < numberOfQuestions; i++) {
     currentQuestion.textContent = answers[0].Q;
-    if (questionNumber === 0) {
-      for (var i = 0; i < 4; i++) {
-        ansBtn1.textContent = answers[0].q1answers[2];
-      }
-    } else if (questionNumber === 1) {
-      ansBtn2.textContent = answers[1].q2answers[3];
-    }
-
+      ansBtn1.textContent = answers[i].choices[0];
+      ansBtn2.textContent = answers[i].choices[1];
+      ansBtn3.textContent = answers[i].choices[2];
+      ansBtn4.textContent = answers[i].choices[3];
+    console.log(answers[i].choices[1])
+    evaluateAns();
   }
+
 }
+
+function evaluateAns() {
+  var correctAnswer;
+  var userAnswer;
+  ansBtn1.addEventListener("click", function(){
+    userAnswer = ansBtn1.textContent;
+    console.log(userAnswer)
+  })
+  ansBtn2.addEventListener("click", function(){
+    userAnswer = ansBtn2.textContent;
+    console.log(userAnswer)
+  })
+  ansBtn3.addEventListener("click", function(){
+    userAnswer = ansBtn3.textContent;
+    console.log(userAnswer)
+  })
+  ansBtn4.addEventListener("click", function(){
+    userAnswer = ansBtn4.textContent;
+    console.log(userAnswer)
+  })
+  if (userAnswer == answers[0].A) {
+    correctAnswer = True;
+  } 
+}
+
 
 function setTime() {
     var timerInterval = setInterval(function(){
