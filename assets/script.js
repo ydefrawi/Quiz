@@ -34,35 +34,22 @@ var answers = [
 ]
 
 //checking array output
-console.log(answers[1].Q)
-console.log(answers[1].choices[1])
-
-//var totalQuestions=questions.length;
-//console.log(totalQuestions)
+console.log(answers[0].Q)
+console.log(answers[0].choices[1])
 
 //Sets number of seconds in timer 
 var secondsLeft=75;
 //sets a space for the timer to appear at the top right 
 var countSpace = document.querySelector("#countSpace");
 
-
-//---------trying to figure out how to change my 4 button names the answer values stored inq1Answers)
-var choice1 = document.getElementById("multipleChoice").children[2];
-
 console.log(choice1)
 
-//hides answer buttons div 
-answerButtonsDiv.style.display = "none";
 
-// startBtn.addEventListener("click", function() {
-//   setTime();
-//   startBtn.style.display = "none";
-//   quizScreens();
-
-// })
 startScreen()
 
+//The applies to the initial screen baked into the HTML
 function startScreen(){
+  answerButtonsDiv.style.display = "none";
   startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
@@ -70,47 +57,45 @@ function startScreen(){
   })
 }
 
+
+//Quiz question screens. I'd like these to iterate through each question
 function quizScreens() {
-  // var correctAnswer;
-  // var userAnswer;
   answerButtonsDiv.style.display = "block";
   for (var i = 0; i < numberOfQuestions; i++) {
-    currentQuestion.textContent = answers[0].Q;
-      ansBtn1.textContent = answers[i].choices[0];
-      ansBtn2.textContent = answers[i].choices[1];
-      ansBtn3.textContent = answers[i].choices[2];
-      ansBtn4.textContent = answers[i].choices[3];
+    currentQuestion.textContent = answers[i].Q;
+    ansBtn1.textContent = answers[i].choices[0];
+    ansBtn2.textContent = answers[i].choices[1];
+    ansBtn3.textContent = answers[i].choices[2];
+    ansBtn4.textContent = answers[i].choices[3];
     console.log(answers[i].choices[1])
     evaluateAns();
   }
 
 }
 
+
+//Checks user button clicks and then evaluates whether they selected the correct answer
 function evaluateAns() {
   var correctAnswer;
   var userAnswer;
   ansBtn1.addEventListener("click", function(){
     userAnswer = ansBtn1.textContent;
-    console.log(userAnswer)
   })
   ansBtn2.addEventListener("click", function(){
     userAnswer = ansBtn2.textContent;
-    console.log(userAnswer)
   })
   ansBtn3.addEventListener("click", function(){
     userAnswer = ansBtn3.textContent;
-    console.log(userAnswer)
   })
   ansBtn4.addEventListener("click", function(){
     userAnswer = ansBtn4.textContent;
-    console.log(userAnswer)
   })
   if (userAnswer == answers[0].A) {
     correctAnswer = True;
   } 
 }
 
-
+//Timer
 function setTime() {
     var timerInterval = setInterval(function(){
       //Should return "Time: 72" or whatever the counter's at
