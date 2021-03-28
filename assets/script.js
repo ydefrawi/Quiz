@@ -20,10 +20,10 @@ startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
   answerButtons.style.display = "block";
-  for (questionNumber=0; questionNumber<totalQuestions; questionNumber++){
-    currentQuestion.textContent = questions[questionNumber];
+  // for (questionNumber=0; questionNumber<totalQuestions; questionNumber++){
+  //   currentQuestion.textContent = questions[questionNumber];
     
-  }
+  // }
 })
 
 

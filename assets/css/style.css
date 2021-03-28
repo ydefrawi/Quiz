@@ -43,7 +43,7 @@ body {
 #quiz-box {
 
     margin: 0 auto;
-    height: 230px;
+    height: fit-content;
     width: 51%;
     border-style: solid;
     border-color: red;
@@ -67,6 +67,7 @@ h3 {
 #startQuiz {
     margin-left: 50%;
     margin-right: 50%;
+    margin-bottom:30px;
     width: fit-content;
     display: inline;
 }
@@ -80,6 +81,7 @@ h3 {
 #multipleChoice{
     display:inline-block;
     margin-left: 30px;
+    margin-bottom: 30px;
 }
 #choice1, #choice2, #choice3, #choice4{
     display:block;
