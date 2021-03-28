@@ -1,3 +1,7 @@
+*{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 html,
 body {
   margin: 0;
@@ -39,7 +43,7 @@ body {
 #quiz-box {
 
     margin: 0 auto;
-    height: 170px;
+    height: 230px;
     width: 51%;
     border-style: solid;
     border-color: red;
@@ -65,8 +69,19 @@ h3 {
     margin-right: 50%;
     width: fit-content;
     display: inline;
+}
+
+.buttonStyle{
     background-color:darkslateblue;
     color:white;
     border-radius: 10px;
+}
 
+#multipleChoice{
+    display:inline-block;
+    margin-left: 30px;
+}
+#choice1, #choice2, #choice3, #choice4{
+    display:block;
+    margin-bottom: 5px;
 }
