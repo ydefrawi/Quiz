@@ -4,6 +4,7 @@ var ansBtn1 = document.getElementById("choice1")
 var ansBtn2 = document.getElementById("choice2")
 var ansBtn3 = document.getElementById("choice3")
 var ansBtn4 = document.getElementById("choice4")
+var titleText = document.getElementById("questions")
 var currentQuestion = document.querySelector("#newQuestion")
 //number of quiz questions
 var numberOfQuestions=4;
@@ -42,7 +43,6 @@ var secondsLeft=75;
 //sets a space for the timer to appear at the top right 
 var countSpace = document.querySelector("#countSpace");
 
-
 startScreen()
 
 //The applies to the initial screen baked into the HTML
@@ -56,7 +56,7 @@ function startScreen(){
 }
 
 
-//Quiz question screens. I'd like these to iterate through each question
+//Quiz question screens.Displays buttons, populates them with the choices, and listens for button clicks
 function quizScreens() {
     answerButtonsDiv.style.display = "block";
     currentQuestion.textContent = questions[questionNumber].Q;
@@ -71,21 +71,26 @@ function quizScreens() {
           evaluateAns(event.target.textContent)
         })
     }
-  
     console.log(questionNumber)
-    questionNumber++;
- 
+   
 }
 
-//Checks user button clicks and then evaluates whether they selected the correct answer
+//Evaluates whether they selected the correct answer
 function evaluateAns(userAnswer) {
   var correctAnswer=questions[questionNumber].A;
   if (userAnswer == correctAnswer) {
     var isRight = true;
   } 
-
+  questionNumber++;
   quizScreens();
 }
+
+//Screen showing final score
+function endScreen() {
+  titleText.textContent ="All Done!"
+  currentQuestion.textContent="Your final score is " + secondsLeft;
+}
+
 
 //Timer
 function setTime() {
