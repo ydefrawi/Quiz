@@ -10,6 +10,7 @@ var initialForm = document.getElementById("formSection")
 var rightWrong = document.getElementById("rightWrong")
 var numberOfQuestions=4;
 var questionNumber=0;
+submitButton = document.getElementById("submit")
 //var questions = ["Question 1?","Question2?","Question 3?", "Question 4?", "Question 5?"];
 
 var answerButtons = document.getElementsByClassName("answerButton")
@@ -45,7 +46,6 @@ var secondsLeft=75;
 var countSpace = document.querySelector("#countSpace");
 
 // highScoreScreen()
-// endScreen()
 startScreen()
 
 //The applies to the initial screen baked into the HTML
@@ -62,6 +62,7 @@ function startScreen(){
 
 //Quiz question screens.Displays buttons, populates them with the choices, and listens for button clicks
 function quizScreens() {
+    console.log("quizScreens() function called")
     answerButtonsDiv.style.display = "block";
     currentQuestion.textContent = questions[questionNumber].Q;
     ansBtn1.textContent = questions[questionNumber].choices[0];
@@ -75,27 +76,32 @@ function quizScreens() {
     answerButtons[index].addEventListener("click", function (event) {
       console.log("Text in clicked button: " + event.target.textContent)
       evaluateAns(event.target.textContent)
+      setTimeout(function () {
+        rightWrong.style.display="none";
+      }, 1000);
  
     })
   }
-  console.log("Question Number: "+questionNumber)
+  console.log("Question Number (this is in quizScreens: "+questionNumber)
   
 }
 
 //Evaluates whether they selected the correct answer
 function evaluateAns(userAnswer) {
-  var correctAnswer=questions[questionNumber].A;
-  console.log("questions[questionNumber].A " + questions[questionNumber].A)
+  console.log("evaluateAns() function called")
+  var correctAnswer = questions[questionNumber].A;
+  console.log("Correct Answer: " + questions[questionNumber].A)
+  rightWrong.style.display="block"
   if (userAnswer == correctAnswer) {
     rightWrong.textContent = "Correct!"
   } else {
     rightWrong.textContent = "Wrong!"
   }
   questionNumber++;
-  console.log("Evaluate function called")
   if (questionNumber >= 4) {
     endScreen()
-  } else {  quizScreens();
+  } else {
+    quizScreens();
   }
 }
 
@@ -108,6 +114,9 @@ function endScreen() {
   titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
   currentQuestion.textContent="Your final score is " + secondsLeft;
   currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
+  submitButton.addEventListener("click", function () {
+    highScoreScreen();
+  })
   // var tag = document.createElement("p");
   // tag.textContent = "Enter Initials";
   // initials=document.getElementById("quiz-box")
