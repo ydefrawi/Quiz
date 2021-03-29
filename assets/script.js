@@ -6,7 +6,8 @@ var ansBtn3 = document.getElementById("choice3")
 var ansBtn4 = document.getElementById("choice4")
 var titleText = document.getElementById("questions")
 var currentQuestion = document.querySelector("#newQuestion")
-//number of quiz questions
+var initialForm = document.getElementById("formSection")
+//number sof quiz questions
 var numberOfQuestions=4;
 var questionNumber=0;
 //var questions = ["Question 1?","Question2?","Question 3?", "Question 4?", "Question 5?"];
@@ -43,10 +44,13 @@ var secondsLeft=75;
 //sets a space for the timer to appear at the top right 
 var countSpace = document.querySelector("#countSpace");
 
+// highScoreScreen()
+// endScreen()
 startScreen()
 
 //The applies to the initial screen baked into the HTML
 function startScreen(){
+  initialForm.style.display = "none";
   answerButtonsDiv.style.display = "none";
   startBtn.addEventListener("click", function() {
   setTime();
@@ -65,32 +69,64 @@ function quizScreens() {
     ansBtn3.textContent = questions[questionNumber].choices[2];
     ansBtn4.textContent = questions[questionNumber].choices[3];
 
+
+    
     for (let index = 0; index < answerButtons.length; index++) {
+      console.log("is this length?", answerButtons.length);
+      //answerButtons[0], answerButtons[1], answerButtons[2], 
         answerButtons[index].addEventListener("click", function(event){
           console.log(event.target.textContent)
           evaluateAns(event.target.textContent)
         })
     }
-    console.log(questionNumber)
-   
+      questionNumber++;
+
+   console.log(questionNumber)
+
+
+
 }
 
 //Evaluates whether they selected the correct answer
 function evaluateAns(userAnswer) {
   var correctAnswer=questions[questionNumber].A;
   if (userAnswer == correctAnswer) {
-    var isRight = true;
+    secondsLeft-=10;
   } 
-  questionNumber++;
   quizScreens();
 }
 
 //Screen showing final score
 function endScreen() {
+  initialForm.style.display = "block";
+  answerButtonsDiv.style.display = "none";
+  startBtn.style.display = "none";
   titleText.textContent ="All Done!"
+  titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
   currentQuestion.textContent="Your final score is " + secondsLeft;
+  currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
+  // var tag = document.createElement("p");
+  // tag.textContent = "Enter Initials";
+  // initials=document.getElementById("quiz-box")
+  // initials.appendChild(tag);
+  // var input = document.createElement("INPUT");
+  // input.setAttribute("type", "text");
+  // input.setAttribute("value", "Hello World!");
+  // document.body.appendChild(input);
+  // var input = document.createElement("INPUT");
+  // input=document.getElementById("quiz-box");
+  // input.setAttribute("type","text");
+  // input.setAttribute("value", "hello world!")
+  // input.appendChild(tag);
 }
 
+function highScoreScreen() {
+  titleText.textContent = "Highscores"
+  answerButtonsDiv.style.display = "none";
+  startBtn.style.display = "none";
+  initialForm.style.display = "none";
+
+}
 
 //Timer
 function setTime() {

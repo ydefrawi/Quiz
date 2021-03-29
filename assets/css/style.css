@@ -75,7 +75,7 @@ h3 {
 .buttonStyle{
     background-color:darkslateblue;
     color:white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #multipleChoice{
@@ -86,4 +86,28 @@ h3 {
 #choice1, #choice2, #choice3, #choice4{
     display:block;
     margin-bottom: 5px;
+}
+
+#initials {
+    text-align: left;
+    margin-left:30px;
+}
+
+#formSection {
+    display:flex;
+    /* border:teal;
+    border-width: 3px;
+    border-style: solid; */
+    margin-bottom: 30px;
+    margin-top:-12px;
+}
+
+form {
+    align-self:center;
+}
+
+#submit {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 30px;
 }

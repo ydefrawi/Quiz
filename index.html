@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,33 +9,44 @@
     <title>Document</title>
 </head>
 
-<header id = "header">
-    <div id = "left">
+<header id="header">
+    <div id="left">
         <p>View Highscores</p>
     </div>
-    <div id = "right">
+    <div id="right">
         <p>Time: <span id="countSpace"></span></p>
     </div>
 
 </header>
 
 
-    <div id = "quiz-box">
-        <h2 id = "questions"> Coding Quiz Challenge </h2>
-        <h3 id = "newQuestion">Try to answer the following questions within the time limit. Keep in mind that incorrect answers will penalize your score by ten seconds!"</h3> </h3>   
-        <button id="startQuiz" class="buttonStyle">Start Quiz</button>
+<div id="quiz-box">
+    <h2 id="questions"> Coding Quiz Challenge </h2>
+    <h3 id="newQuestion">Try to answer the following questions within the time limit. Keep in mind that incorrect
+        answers will penalize your score by ten seconds!"</h3>
+    </h3>
+    <button id="startQuiz" class="buttonStyle">Start Quiz</button>
 
-        <div id = multipleChoice>
-            <button id="choice1" class="buttonStyle answerButton">Choice 1 </button>
-            <button id="choice2" class="buttonStyle answerButton">Choice 2 </button>
-            <button id="choice3" class="buttonStyle answerButton">Choice 3 </button>
-            <button id="choice4" class="buttonStyle answerButton">Choice 4 </button>
-        </div>  
+    <div id=multipleChoice>
+        <button id="choice1" class="buttonStyle answerButton">Choice 1 </button>
+        <button id="choice2" class="buttonStyle answerButton">Choice 2 </button>
+        <button id="choice3" class="buttonStyle answerButton">Choice 3 </button>
+        <button id="choice4" class="buttonStyle answerButton">Choice 4 </button>
     </div>
+
+    <div id=formSection>
+        <h3 id="initials">Enter Initials</h3>
+        <form>
+            <input type="text" id="fname" name="fname"><br>
+        </form>
+        <button id=submit class=buttonStyle>Submit</button>
+    </div>
+
+</div>
 
 
 <body>
-    <script src = "assets/script.js"></script>
+    <script src="assets/script.js"></script>
 </body>
-</html>
 
+</html>
