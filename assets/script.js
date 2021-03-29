@@ -7,7 +7,7 @@ var ansBtn4 = document.getElementById("choice4")
 var titleText = document.getElementById("questions")
 var currentQuestion = document.querySelector("#newQuestion")
 var initialForm = document.getElementById("formSection")
-//number sof quiz questions
+var rightWrong = document.getElementById("rightWrong")
 var numberOfQuestions=4;
 var questionNumber=0;
 //var questions = ["Question 1?","Question2?","Question 3?", "Question 4?", "Question 5?"];
@@ -69,31 +69,34 @@ function quizScreens() {
     ansBtn3.textContent = questions[questionNumber].choices[2];
     ansBtn4.textContent = questions[questionNumber].choices[3];
 
-
     
-    for (let index = 0; index < answerButtons.length; index++) {
-      console.log("is this length?", answerButtons.length);
-      //answerButtons[0], answerButtons[1], answerButtons[2], 
-        answerButtons[index].addEventListener("click", function(event){
-          console.log(event.target.textContent)
-          evaluateAns(event.target.textContent)
-        })
-    }
-      questionNumber++;
-
-   console.log(questionNumber)
-
-
-
+  for (let index = 0; index < answerButtons.length; index++) {
+    //answerButtons[0], answerButtons[1], answerButtons[2], 
+    answerButtons[index].addEventListener("click", function (event) {
+      console.log("Text in clicked button: " + event.target.textContent)
+      evaluateAns(event.target.textContent)
+ 
+    })
+  }
+  console.log("Question Number: "+questionNumber)
+  
 }
 
 //Evaluates whether they selected the correct answer
 function evaluateAns(userAnswer) {
   var correctAnswer=questions[questionNumber].A;
+  console.log("questions[questionNumber].A " + questions[questionNumber].A)
   if (userAnswer == correctAnswer) {
-    secondsLeft-=10;
-  } 
-  quizScreens();
+    rightWrong.textContent = "Correct!"
+  } else {
+    rightWrong.textContent = "Wrong!"
+  }
+  questionNumber++;
+  console.log("Evaluate function called")
+  if (questionNumber >= 4) {
+    endScreen()
+  } else {  quizScreens();
+  }
 }
 
 //Screen showing final score

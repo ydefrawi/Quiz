@@ -111,3 +111,8 @@ form {
     margin-bottom: 15px;
     margin-left: 30px;
 }
+
+#rightWrong {
+    font-size: 20px;
+    text-align: center;
+}
