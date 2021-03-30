@@ -44,7 +44,7 @@ var questions = [
 var secondsLeft=75;
 //sets a space for the timer to appear at the top right 
 var countSpace = document.querySelector("#countSpace");
-
+// endScreen()
 // highScoreScreen()
 startScreen()
 
@@ -55,6 +55,17 @@ function startScreen(){
   startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
+  for (let index = 0; index < answerButtons.length; index++) {
+    //answerButtons[0], answerButtons[1], answerButtons[2], 
+    answerButtons[index].addEventListener("click", function (event) {
+      console.log("Text in clicked button: " + event.target.textContent)
+      evaluateAns(event.target.textContent)
+      setTimeout(function () {
+        rightWrong.style.display="none";
+      }, 1000);
+ 
+    })
+  }
   quizScreens();
   })
 }
@@ -71,19 +82,8 @@ function quizScreens() {
     ansBtn4.textContent = questions[questionNumber].choices[3];
 
     
-  for (let index = 0; index < answerButtons.length; index++) {
-    //answerButtons[0], answerButtons[1], answerButtons[2], 
-    answerButtons[index].addEventListener("click", function (event) {
-      console.log("Text in clicked button: " + event.target.textContent)
-      evaluateAns(event.target.textContent)
-      setTimeout(function () {
-        rightWrong.style.display="none";
-      }, 1000);
- 
-    })
-  }
-  console.log("Question Number (this is in quizScreens: "+questionNumber)
-  
+
+  console.log("Question Number (this is in quizScreens): "+questionNumber)
 }
 
 //Evaluates whether they selected the correct answer
@@ -97,7 +97,7 @@ function evaluateAns(userAnswer) {
   } else {
     rightWrong.textContent = "Wrong!"
   }
-  questionNumber++;
+  questionNumber+=1;
   if (questionNumber >= 4) {
     endScreen()
   } else {
