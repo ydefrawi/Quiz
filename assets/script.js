@@ -48,20 +48,24 @@ var questions = [
 var secondsLeft=75;
 //sets a space for the timer to appear at the top right 
 var countSpace = document.querySelector("#countSpace");
-// endScreen()
-// highScoreScreen()
-startScreen()
 
-//The applies to the initial screen baked into the HTML
+
+//The applies to the initial start screen
 function startScreen(){
+  titleText.style.display="block";
+  startBtn.style.display = "block";
+  titleText.textContent="Coding Quiz Challenge"
+  currentQuestion.style.display="block";
+  currentQuestion.textContent="Try to answer the following questions as fast as possible! Incorrect answers will penalize you by subtracting ten seconds!"
   initialForm.style.display = "none";
   highScoreButtons.style.display="none"
   answerButtonsDiv.style.display = "none";
+  scoreList.style.display="none";
+  questionNumber=0;
   startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
   for (let index = 0; index < answerButtons.length; index++) {
-    //answerButtons[0], answerButtons[1], answerButtons[2], 
     answerButtons[index].addEventListener("click", function (event) {
       console.log("Text in clicked button: " + event.target.textContent)
       evaluateAns(event.target.textContent)
@@ -121,59 +125,45 @@ function endScreen() {
   titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
   currentQuestion.textContent="Your final score is " + secondsLeft;
   currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
-  submitButton.addEventListener("click", function (event) {
-    var li = document.createElement("li")
-    li.textContent=userInitials.value + " - finished with " + secondsLeft + " seconds remaining!";
-    scoreList.appendChild(li);
-    event.preventDefault();
-    console.log(userInitials.value)
-    highScoreScreen();
-  })
-  // var tag = document.createElement("p");
-  // tag.textContent = "Enter Initials";
-  // initials=document.getElementById("quiz-box")
-  // initials.appendChild(tag);
-  // var input = document.createElement("INPUT");
-  // input.setAttribute("type", "text");
-  // input.setAttribute("value", "Hello World!");
-  // document.body.appendChild(input);
-  // var input = document.createElement("INPUT");
-  // input=document.getElementById("quiz-box");
-  // input.setAttribute("type","text");
-  // input.setAttribute("value", "hello world!")
-  // input.appendChild(tag);
 }
+
+submitButton.addEventListener("click", function (event) {
+  var li = document.createElement("li")
+  li.textContent=userInitials.value + " - finished with " + secondsLeft + " seconds remaining!";
+  scoreList.appendChild(li);
+  event.preventDefault();
+  console.log(userInitials.value)
+  highScoreScreen();
+})
+
 
 function highScoreScreen() {
   highScoreButtons.style.display = "block";
-  highScoreButtons.style.justifyContent="center";
-  titleText.textContent = "Highscores"
+  scoreList.style.display="block";
   answerButtonsDiv.style.display = "none";
   currentQuestion.style.display = "none";
   startBtn.style.display = "none";
   initialForm.style.display = "none";
+  highScoreButtons.style.justifyContent="center";
+  titleText.textContent = "Highscores"
   currentQuestion.textContent = ""
   console.log("high score screen called")
   var backButton = document.getElementById("goBack");
   backButton.addEventListener("click", function(event) {
     event.preventDefault;
+    startScreen();
     console.log("back clicked")
-
   })
+  var clearScores = document.getElementById("clearScores");
+  clearScores.addEventListener("click", function() {
+    console.log("clear scores pressed")
+    if (scoreList.hasChildNodes) {
+      scoreList.removeChild(scoreList.childNodes[0])
+      console.log("has child nodes")
+    }
+  })
+  console.log(scoreList.childNodes)
 }
-
-// function renderScores(){
-//   for (var i = 0; i < scores.length; i++) {
-//     var scores = scores[i];
-
-//     var li = document.createElement("li");
-//     li.textContent = scores;
-//     li.setAttribute("data-index", i);
-
-//     scoresList.appendChild(li);
-//   }
-// }
-
 
 
 //Timer
@@ -187,3 +177,8 @@ function setTime() {
       }
     },1000);
 }
+
+
+// endScreen()
+// highScoreScreen()
+startScreen()
