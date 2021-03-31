@@ -13,7 +13,7 @@ h2 {
     text-align: center;
     margin-left:50px;
     margin-right:50px;
-    border-radius: 30px;
+    border-radius: 15px;
     padding:5px;
     
 }
@@ -29,6 +29,7 @@ h3 {
     margin-left:30px;
     margin-right:30px;
 }
+
 #header {
     display:flex;
     height:30px;
@@ -36,8 +37,7 @@ h3 {
     /* border-color: red; */
     border-width: 1px;
     margin-bottom:30px;
-    background-color:darkslateblue
-}
+    background: linear-gradient(100deg, rgba(38,32,87,1) 0%, rgba(65,80,154,1) 100%);}
 
 #header p{
     color:floralwhite
@@ -77,11 +77,13 @@ h3 {
     height: fit-content;
     width: 51%;
     border-style: solid;
-    /* border-color: red; */
+    border-color:darkslateblue;
     border-width: 1px;
+    border-radius: 20px;
     min-width: 620px;
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-    /* background-image: url(/assets/images/Zeus.png); */
+    background-image: url(https://www.ancient-origins.net/sites/default/files/field/image/Anubis-small.jpg);
+    background-position:left;
 
 }
 
@@ -89,6 +91,7 @@ h3 {
 #newQuestion{
     background-color: white;
     border-radius: 15px;
+
 }
 
 #startQuiz {
@@ -120,7 +123,9 @@ h3 {
 
 #enterInitials {
     text-align: left;
-    margin-left:30px;
+    margin-left:20px;
+    color:wheat;
+
 }
 
 #formSection {
@@ -143,12 +148,13 @@ form {
 #submit {
     margin-top: 15px;
     margin-bottom: 15px;
-    margin-left: 30px;
+    margin-left: 40px;
 }
 
 #rightWrong {
     font-size: 20px;
     text-align: center;
+    color:purple;
 }
 
 #scoreList {

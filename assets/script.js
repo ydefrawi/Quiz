@@ -18,6 +18,7 @@ var highScoreButtons = document.getElementById("highScoreButtons")
 //var questions = ["Question 1?","Question2?","Question 3?", "Question 4?", "Question 5?"];
 var scores=[];
 var answerButtons = document.getElementsByClassName("answerButton")
+var timerInterval;
 
 var questions = [
   {
@@ -74,7 +75,7 @@ startBtn.addEventListener("click", function() {
   }
   quizScreens();
   })
-  
+
 //The applies to the initial start screen
 function startScreen(){
   secondsLeft=75;
@@ -123,6 +124,7 @@ function evaluateAns(userAnswer) {
   }
   questionNumber+=1;
   if (questionNumber >= 4) {
+    clearInterval(timerInterval);
     endScreen()
   } else {
     quizScreens();
@@ -135,10 +137,11 @@ function endScreen() {
   highScoreButtons.style.display = "none";
   answerButtonsDiv.style.display = "none";
   startBtn.style.display = "none";
-  titleText.textContent ="All Done!"
-  titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
-  currentQuestion.textContent="You finished with " + secondsLeft + " seconds remaining!";
   currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
+  titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
+  titleText.textContent ="All Done!"
+  currentQuestion.textContent="You finished with " + secondsLeft + " seconds remaining!";
+  countSpace.textContent=secondsLeft;
 }
 
 
@@ -179,12 +182,13 @@ function highScoreScreen() {
 
 function setTime() {
   
-    var timerInterval = setInterval(function () {
+      timerInterval = setInterval(function () {
       //Should return "Time: 72" or whatever the counter's at
       countSpace.textContent = secondsLeft;
       secondsLeft--
       if (secondsLeft === 0) {
         clearInterval(timerInterval);
+        endScreen();
       }
     }, 1000);
   } 
