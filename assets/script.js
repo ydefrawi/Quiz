@@ -19,6 +19,8 @@ var highScoreButtons = document.getElementById("highScoreButtons")
 var scores=[];
 var answerButtons = document.getElementsByClassName("answerButton")
 var timerInterval;
+var answersRight=0;
+var correctDisplay = document.getElementById("answersRight")
 
 var questions = [
   {
@@ -40,6 +42,41 @@ var questions = [
     Q: "Who was the Greek god of getting hammered and engaging in ritual madness?",
     choices: ["Zeus", "Poseidon", "Ares", "Dionysos"],
     A: "Dionysos"
+  },
+  {
+    Q: "According to Greek myth, was the abode of the Gods?",
+    choices: ["Valhalla", "Mount Olympus", "The Hall of Kings", "The Divine Realm"],
+    A: "Mount Olympus"
+  },
+  {
+    Q: "Which of these Hindu gods is considered 'The Destroyer?'",
+    choices: ["Vishnu", "Brahma", "Indra", "Shiva"],
+    A: "Shiva"
+  },
+  {
+    Q: "Who is the Roman equivalent of the Greek god Aphrodite?",
+    choices: ["Juno", "Venus", "Ceres", "Minerva"],
+    A: "Venus"
+  },
+  {
+    Q: "What was left in Pandora’s box after she released misery and evil?",
+    choices: ["Joy", "Madness", "Hope", "Snakes"],
+    A: "Hope"
+  },
+  {
+    Q: "In Ancient Egypt, Sekhmet was a powerful deity associated with which equally powerful animal?",
+    choices: ["A Bear", "A Wolf", "A Crocodile", "A Lion"],
+    A: "A Lion"
+  },
+  {
+    Q: "In Norse Mythology, what is the home of the Giants?",
+    choices: ["MuspelHeim", "Jotunheim", "SvartalFheim", "Vanaheim"],
+    A: "Jotunheim"
+  },
+  {
+    Q: "In Ancient Egypt, what is used as a counter-balance against the heart in the Underworld; representing truth?",
+    choices: ["A Feather", "A Hair", "Your Earthly Belongings", "A Bowl of Sand"],
+    A: "Feather"
   }
 ]
 
@@ -52,7 +89,7 @@ var countSpace = document.querySelector("#countSpace");
 
 submitButton.addEventListener("click", function (event) {
   var li = document.createElement("li")
-  li.textContent=userInitials.value + " - finished with " + secondsLeft + " seconds remaining!";
+  li.textContent=userInitials.value + ": " + answersRight  + " of 11 correct with " + secondsLeft + " seconds remaining!";
   scoreList.appendChild(li);
   event.preventDefault();
   console.log(userInitials.value)
@@ -79,6 +116,8 @@ startBtn.addEventListener("click", function() {
 //The applies to the initial start screen
 function startScreen(){
   secondsLeft=75;
+  answersRight=0;
+  correctDisplay.style.display="none";
   titleText.style.display="block";
   startBtn.style.display = "block";
   titleText.textContent="Coding Quiz Challenge"
@@ -96,7 +135,14 @@ function startScreen(){
 //Quiz question screens.Displays buttons, populates them with the choices, and listens for button clicks
 function quizScreens() {
     console.log("quizScreens() function called")
+    correctDisplay.style.display="block";
+    titleText.style.display="none";
+    initialForm.style.display = "none";
+    highScoreButtons.style.display = "none";
+    answerButtonsDiv.style.display = "none";
+    startBtn.style.display = "none";
     answerButtonsDiv.style.display = "block";
+    correctDisplay.textContent ="Score: " +answersRight+ " of 11"
     currentQuestion.textContent = questions[questionNumber].Q;
     ansBtn1.textContent = questions[questionNumber].choices[0];
     ansBtn2.textContent = questions[questionNumber].choices[1];
@@ -118,12 +164,13 @@ function evaluateAns(userAnswer) {
   rightWrong.style.display="block"
   if (userAnswer == correctAnswer) {
     rightWrong.textContent = "Correct!"
+    answersRight++;
   } else {
     rightWrong.textContent = "Wrong! 10 Seconds Removed!"
     secondsLeft-=10;
   }
   questionNumber+=1;
-  if (questionNumber >= 4) {
+  if (questionNumber >= 11) {
     clearInterval(timerInterval);
     endScreen()
   } else {
@@ -134,6 +181,7 @@ function evaluateAns(userAnswer) {
 //Screen showing final score. Hides all appropriate elements
 function endScreen() {
   initialForm.style.display = "block";
+  correctDisplay.style.display="block";
   highScoreButtons.style.display = "none";
   answerButtonsDiv.style.display = "none";
   startBtn.style.display = "none";
@@ -141,6 +189,7 @@ function endScreen() {
   titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
   titleText.textContent ="All Done!"
   currentQuestion.textContent="You finished with " + secondsLeft + " seconds remaining!";
+  correctDisplay.textContent ="Final Score: " +answersRight+ " of 11"
   countSpace.textContent=secondsLeft;
 }
 
@@ -194,7 +243,7 @@ function setTime() {
   } 
 
 
-
+// quizScreens()
 // endScreen()
 // highScoreScreen()
 startScreen()
