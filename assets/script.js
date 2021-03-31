@@ -136,7 +136,7 @@ function endScreen() {
   startBtn.style.display = "none";
   titleText.textContent ="All Done!"
   titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
-  currentQuestion.textContent="Your final score is " + secondsLeft;
+  currentQuestion.textContent="You finished with " + secondsLeft + " seconds remaining!";
   currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
 }
 
