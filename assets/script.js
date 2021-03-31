@@ -52,6 +52,7 @@ var countSpace = document.querySelector("#countSpace");
 
 //The applies to the initial start screen
 function startScreen(){
+  secondsLeft=75;
   titleText.style.display="block";
   startBtn.style.display = "block";
   titleText.textContent="Coding Quiz Challenge"
@@ -65,6 +66,7 @@ function startScreen(){
   startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
+
   for (let index = 0; index < answerButtons.length; index++) {
     answerButtons[index].addEventListener("click", function (event) {
       console.log("Text in clicked button: " + event.target.textContent)
@@ -90,7 +92,9 @@ function quizScreens() {
     ansBtn3.textContent = questions[questionNumber].choices[2];
     ansBtn4.textContent = questions[questionNumber].choices[3];
 
-    
+    if (secondsLeft === 0){
+      highScoreScreen();
+    }
 
   console.log("Question Number (this is in quizScreens): "+questionNumber)
 }
@@ -151,32 +155,37 @@ function highScoreScreen() {
   var backButton = document.getElementById("goBack");
   backButton.addEventListener("click", function(event) {
     event.preventDefault;
+    startBtn.removeEventListener("click",function(){})
+    submitButton.removeEventListener("click",function(){})
     startScreen();
     console.log("back clicked")
   })
   var clearScores = document.getElementById("clearScores");
   clearScores.addEventListener("click", function() {
     console.log("clear scores pressed")
-    if (scoreList.hasChildNodes) {
-      scoreList.removeChild(scoreList.childNodes[0])
+    if (scoreList.firstChild) {
+      scoreList.removeChild(scoreList.lastChild)
       console.log("has child nodes")
     }
   })
-  console.log(scoreList.childNodes)
+  
 }
 
 
 //Timer
+
 function setTime() {
-    var timerInterval = setInterval(function(){
+  
+    var timerInterval = setInterval(function () {
       //Should return "Time: 72" or whatever the counter's at
       countSpace.textContent = secondsLeft;
       secondsLeft--
-      if(secondsLeft===0){
+      if (secondsLeft === 0) {
         clearInterval(timerInterval);
       }
-    },1000);
-}
+    }, 1000);
+  } 
+
 
 
 // endScreen()
