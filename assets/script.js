@@ -49,6 +49,15 @@ var secondsLeft=75;
 //sets a space for the timer to appear at the top right 
 var countSpace = document.querySelector("#countSpace");
 
+submitButton.addEventListener("click", function (event) {
+  var li = document.createElement("li")
+  li.textContent=userInitials.value + " - finished with " + secondsLeft + " seconds remaining!";
+  scoreList.appendChild(li);
+  event.preventDefault();
+  console.log(userInitials.value)
+  highScoreScreen();
+})
+
 
 //The applies to the initial start screen
 function startScreen(){
@@ -119,7 +128,7 @@ function evaluateAns(userAnswer) {
   }
 }
 
-//Screen showing final score
+//Screen showing final score. Hides all appropriate elements
 function endScreen() {
   initialForm.style.display = "block";
   highScoreButtons.style.display = "none";
@@ -131,16 +140,9 @@ function endScreen() {
   currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
 }
 
-submitButton.addEventListener("click", function (event) {
-  var li = document.createElement("li")
-  li.textContent=userInitials.value + " - finished with " + secondsLeft + " seconds remaining!";
-  scoreList.appendChild(li);
-  event.preventDefault();
-  console.log(userInitials.value)
-  highScoreScreen();
-})
 
 
+//Runs High score screen. Hides all appropriate elements. 
 function highScoreScreen() {
   highScoreButtons.style.display = "block";
   scoreList.style.display="block";
