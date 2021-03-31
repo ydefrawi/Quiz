@@ -58,21 +58,7 @@ submitButton.addEventListener("click", function (event) {
   highScoreScreen();
 })
 
-
-//The applies to the initial start screen
-function startScreen(){
-  secondsLeft=75;
-  titleText.style.display="block";
-  startBtn.style.display = "block";
-  titleText.textContent="Coding Quiz Challenge"
-  currentQuestion.style.display="block";
-  currentQuestion.textContent="Try to answer the following questions as fast as possible! Incorrect answers will penalize you by subtracting ten seconds!"
-  initialForm.style.display = "none";
-  highScoreButtons.style.display="none"
-  answerButtonsDiv.style.display = "none";
-  scoreList.style.display="none";
-  questionNumber=0;
-  startBtn.addEventListener("click", function() {
+startBtn.addEventListener("click", function() {
   setTime();
   startBtn.style.display = "none";
 
@@ -88,6 +74,21 @@ function startScreen(){
   }
   quizScreens();
   })
+  
+//The applies to the initial start screen
+function startScreen(){
+  secondsLeft=75;
+  titleText.style.display="block";
+  startBtn.style.display = "block";
+  titleText.textContent="Coding Quiz Challenge"
+  currentQuestion.style.display="block";
+  currentQuestion.textContent="Try to answer the following questions as fast as possible! Incorrect answers will penalize you by subtracting ten seconds!"
+  initialForm.style.display = "none";
+  highScoreButtons.style.display="none"
+  answerButtonsDiv.style.display = "none";
+  scoreList.style.display="none";
+  questionNumber=0;
+  
 }
 
 
