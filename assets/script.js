@@ -9,7 +9,7 @@ var titleText = document.getElementById("questions")
 var currentQuestion = document.querySelector("#newQuestion")
 var initialForm = document.getElementById("formSection")
 var rightWrong = document.getElementById("rightWrong")
-var numberOfQuestions=4;
+// var numberOfQuestions=11;
 var questionNumber=0;
 var submitButton = document.getElementById("submitScore")
 var userInitials = document.getElementById("initialText")
@@ -88,10 +88,10 @@ var secondsLeft=75;
 var countSpace = document.querySelector("#countSpace");
 
 submitButton.addEventListener("click", function (event) {
+  event.preventDefault();
   var li = document.createElement("li")
   li.textContent=userInitials.value + ": " + answersRight  + " of 11 correct with " + secondsLeft + " seconds remaining!";
   scoreList.appendChild(li);
-  event.preventDefault();
   console.log(userInitials.value)
   highScoreScreen();
 })
@@ -161,21 +161,23 @@ function evaluateAns(userAnswer) {
   console.log("evaluateAns() function called")
   var correctAnswer = questions[questionNumber].A;
   console.log("Correct Answer: " + questions[questionNumber].A)
-  rightWrong.style.display="block"
-  if (userAnswer == correctAnswer) {
-    rightWrong.textContent = "Correct!"
-    answersRight++;
-  } else {
-    rightWrong.textContent = "Wrong! 10 Seconds Removed!"
-    secondsLeft-=10;
-  }
-  questionNumber+=1;
-  if (questionNumber >= 11) {
-    clearInterval(timerInterval);
-    endScreen()
-  } else {
-    quizScreens();
-  }
+  rightWrong.style.display = "block"
+  
+    if (userAnswer == correctAnswer) {
+      rightWrong.textContent = "Correct!"
+      answersRight++;
+    } else {
+      rightWrong.textContent = "Wrong! 10 Seconds Removed!"
+      secondsLeft -= 10;
+    }
+    questionNumber += 1;
+    if (questionNumber >= 11) {
+      clearInterval(timerInterval);
+      endScreen()
+    } else {
+      quizScreens();
+    }
+
 }
 
 //Screen showing final score. Hides all appropriate elements
@@ -189,6 +191,7 @@ function endScreen() {
   titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
   titleText.textContent ="All Done!"
   currentQuestion.textContent="You finished with " + secondsLeft + " seconds remaining!";
+  correctDisplay.style.color="wheat";
   correctDisplay.textContent ="Final Score: " +answersRight+ " of 11"
   countSpace.textContent=secondsLeft;
 }
@@ -244,6 +247,6 @@ function setTime() {
 
 
 // quizScreens()
-// endScreen()
+endScreen()
 // highScoreScreen()
-startScreen()
+// startScreen()
