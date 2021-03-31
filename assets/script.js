@@ -1,3 +1,4 @@
+
 var startBtn = document.getElementById("startQuiz")
 var answerButtonsDiv = document.getElementById("multipleChoice")
 var ansBtn1 = document.getElementById("choice1")
@@ -10,9 +11,12 @@ var initialForm = document.getElementById("formSection")
 var rightWrong = document.getElementById("rightWrong")
 var numberOfQuestions=4;
 var questionNumber=0;
-submitButton = document.getElementById("submit")
+var submitButton = document.getElementById("submitScore")
+var userInitials = document.getElementById("initialText")
+var scoreList = document.getElementById("scoreList")
+var highScoreButtons = document.getElementById("highScoreButtons")
 //var questions = ["Question 1?","Question2?","Question 3?", "Question 4?", "Question 5?"];
-
+var scores=[];
 var answerButtons = document.getElementsByClassName("answerButton")
 
 var questions = [
@@ -51,6 +55,7 @@ startScreen()
 //The applies to the initial screen baked into the HTML
 function startScreen(){
   initialForm.style.display = "none";
+  highScoreButtons.style.display="none"
   answerButtonsDiv.style.display = "none";
   startBtn.addEventListener("click", function() {
   setTime();
@@ -95,7 +100,8 @@ function evaluateAns(userAnswer) {
   if (userAnswer == correctAnswer) {
     rightWrong.textContent = "Correct!"
   } else {
-    rightWrong.textContent = "Wrong!"
+    rightWrong.textContent = "Wrong! 10 Seconds Removed!"
+    secondsLeft-=10;
   }
   questionNumber+=1;
   if (questionNumber >= 4) {
@@ -108,13 +114,19 @@ function evaluateAns(userAnswer) {
 //Screen showing final score
 function endScreen() {
   initialForm.style.display = "block";
+  highScoreButtons.style.display = "none";
   answerButtonsDiv.style.display = "none";
   startBtn.style.display = "none";
   titleText.textContent ="All Done!"
   titleText.setAttribute("Style", "margin-left:30px; text-align:left;")
   currentQuestion.textContent="Your final score is " + secondsLeft;
   currentQuestion.setAttribute("Style", "margin-left:30px; text-align:left;")
-  submitButton.addEventListener("click", function () {
+  submitButton.addEventListener("click", function (event) {
+    var li = document.createElement("li")
+    li.textContent=userInitials.value + " - finished with " + secondsLeft + " seconds remaining!";
+    scoreList.appendChild(li);
+    event.preventDefault();
+    console.log(userInitials.value)
     highScoreScreen();
   })
   // var tag = document.createElement("p");
@@ -133,12 +145,36 @@ function endScreen() {
 }
 
 function highScoreScreen() {
+  highScoreButtons.style.display = "block";
+  highScoreButtons.style.justifyContent="center";
   titleText.textContent = "Highscores"
   answerButtonsDiv.style.display = "none";
+  currentQuestion.style.display = "none";
   startBtn.style.display = "none";
   initialForm.style.display = "none";
+  currentQuestion.textContent = ""
+  console.log("high score screen called")
+  var backButton = document.getElementById("goBack");
+  backButton.addEventListener("click", function(event) {
+    event.preventDefault;
+    console.log("back clicked")
 
+  })
 }
+
+// function renderScores(){
+//   for (var i = 0; i < scores.length; i++) {
+//     var scores = scores[i];
+
+//     var li = document.createElement("li");
+//     li.textContent = scores;
+//     li.setAttribute("data-index", i);
+
+//     scoresList.appendChild(li);
+//   }
+// }
+
+
 
 //Timer
 function setTime() {

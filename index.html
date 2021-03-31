@@ -22,10 +22,13 @@
 
 <div id="quiz-box">
     <h2 id="questions"> Coding Quiz Challenge </h2>
-    <h3 id="newQuestion">Try to answer the following questions within the time limit. Keep in mind that incorrect
-        answers will penalize your score by ten seconds!"</h3>
+    <h3 id="newQuestion">Try to answer the following questions as fast as possible! Incorrect
+        answers will penalize you by subtracting ten seconds!"</h3>
     </h3>
+
+    <div id=startQuizDiv>
     <button id="startQuiz" class="buttonStyle">Start Quiz</button>
+    </div>
 
     <div id=multipleChoice>
         <button id="choice1" class="buttonStyle answerButton">Choice 1 </button>
@@ -34,16 +37,23 @@
         <button id="choice4" class="buttonStyle answerButton">Choice 4 </button>
     </div>
 
-    <div id=formSection>
-        <h3 id="initials">Enter Initials</h3>
-        <form>
-            <input type="text" id="fname" name="fname"><br>
+    <div id="formSection">
+        <h3 id="enterInitials">Enter Initials</h3>
+        <form id="initialForm">
+            <input type="text" id="initialText" name="initialText"><br>
         </form>
-        <button id=submit class=buttonStyle>Submit</button>
+        <button type ="submit" form="initialForm" value="Submit" class="buttonStyle" id="submitScore">Submit</button>
+    </div>
+
+        <ol id = scoreList>
+        </ol>
+
+    <div id="highScoreButtons">
+        <button id="goBack" class="buttonStyle">Go Back</button>
+        <button id="clearScores" class="buttonStyle">Clear Highscores</button>
     </div>
 
     <div id=rightWrong>
-
     </div>
 
 </div>
