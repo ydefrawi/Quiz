@@ -247,6 +247,6 @@ function setTime() {
 
 
 // quizScreens()
-endScreen()
+// endScreen()
 // highScoreScreen()
-// startScreen()
+startScreen()
