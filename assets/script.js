@@ -120,7 +120,7 @@ function startScreen(){
   correctDisplay.style.display="none";
   titleText.style.display="block";
   startBtn.style.display = "block";
-  titleText.textContent="Coding Quiz Challenge"
+  titleText.textContent="Ancient Mythology Quiz"
   currentQuestion.style.display="block";
   currentQuestion.textContent="Try to answer the following questions as fast as possible! Incorrect answers will penalize you by subtracting ten seconds!"
   initialForm.style.display = "none";
